@@ -89,7 +89,7 @@ Overall, this project improved my understanding of Java and how to combine class
 
 ### Design choices
 
-I chose to divide the program into several classes to make the code easier to understand, maintain and develop. I used inheritance to represent different types of activities, such as training and meetings.
+I chose to divide the program into several classes to make the code easier to understand, maintain, and develop. I used inheritance to represent different types of activities, such as training and meetings.
 
 I also separated the graphical user interface from the management of activities to give each class a clear responsibility.
 
