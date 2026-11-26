@@ -5,5 +5,5 @@
  */
 void main() {
 
-    CalendarGUI calendarGUI = new CalendarGUI();
+    new CalendarGUI();
 }

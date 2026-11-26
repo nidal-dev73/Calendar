@@ -21,13 +21,13 @@ public class TrainingActivity extends CalendarActivity{
 
         super(name,date,time);
     }
-
-
-    @Override
     /**
      * Returns blue as the color for training activities.
      * @return the color blue
      */
+
+    @Override
+
     public Color getColor(){
         return Color.blue;
     }

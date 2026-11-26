@@ -3,7 +3,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.*;
-
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 /**
  * Creates and displays the calendar window using Swing.
@@ -14,7 +15,7 @@ import java.time.*;
  */
 
 public class CalendarGUI {
-    private final WeekSchedule field = new WeekSchedule();
+    private final WeekSchedule schedule = new WeekSchedule();
 
     /**
      * Creates the calendar window and its components.
@@ -44,10 +45,9 @@ public class CalendarGUI {
         weekPanel.setLayout(new GridLayout(1, 7));//
 
         LocalDate today = LocalDate.now();
-        LocalDate monday = today.minusDays(today.getDayOfWeek().getValue() - 1);/*Java automatically gives each
-        weekday a number from 1 (Monday) to 7 (Sunday) using getDayOfWeek().getValue().
-         we use the number of today to substract (-1) and then we count back result to reach monday.
-         These numbers are separate from the for loop index i.*/
+        LocalDate monday = today.minusDays(today.getDayOfWeek().getValue() - 1);
+
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("EEEE d MMMM", Locale.forLanguageTag("sv-SE"));
         for (int i = 0; i < 7; i++) {
             LocalDate date = monday.plusDays(i);
 
@@ -59,7 +59,7 @@ public class CalendarGUI {
                 singleDayPanel.setBackground(new Color(220, 255, 220));
             }
 
-            JLabel label = new JLabel(String.valueOf(date));
+            JLabel label = new JLabel(dateFormat.format(date));
             label.setAlignmentX(Component.CENTER_ALIGNMENT);
             singleDayPanel.add(label);
 
@@ -115,9 +115,7 @@ public class CalendarGUI {
                        
                         CalendarActivity activity;
                         String userChoice;
-                       /* if (box.getSelectedItem() == null) {
-                            return;
-                        } */
+
                         userChoice=box.getSelectedItem().toString();
 
                         if(userChoice.equals("training")){
@@ -136,7 +134,7 @@ public class CalendarGUI {
                                     "Warning",
                                     JOptionPane.WARNING_MESSAGE);
                         }
-                       else if (field.hasActivityOnTime(date, startTime))
+                       else if (schedule.hasActivityOnTime(date, startTime))
                         {
                             JOptionPane.showMessageDialog(
                                     null,
@@ -145,7 +143,7 @@ public class CalendarGUI {
                                     JOptionPane.WARNING_MESSAGE);
                         }
                         else {
-                            field.addActivity(activity);
+                            schedule.addActivity(activity);
 
                             JPanel oneActivityPanel = new JPanel();
                             oneActivityPanel.setOpaque(false);
@@ -162,7 +160,7 @@ public class CalendarGUI {
 
                             dayActivities.removeAll();
 
-                            for (CalendarActivity a : field.getActivitiesForDate(date)) {
+                            for (CalendarActivity a : schedule.getActivitiesForDate(date)) {
 
                                 JPanel panel = new JPanel();
                                 panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -184,7 +182,7 @@ public class CalendarGUI {
                                 dayActivities.add(panel);
 
                                 deleteButton.addActionListener(event -> {
-                                    field.removeActivity(a);
+                                    schedule.removeActivity(a);
 
                                     dayActivities.remove(panel);
 
@@ -197,7 +195,7 @@ public class CalendarGUI {
 
                             delete.addActionListener(actionEvent -> {
 
-                                field.removeActivity(activity);
+                                schedule.removeActivity(activity);
                                 dayActivities.remove(oneActivityPanel);
                                 singleDayPanel.revalidate();
                                 singleDayPanel.repaint();

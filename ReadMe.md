@@ -1,4 +1,4 @@
-# Project Calendar
+ro# Project Calendar
 ## JDK Version
 
 This project was developed using **Microsoft OpenJDK 25.0.4**.
@@ -86,3 +86,15 @@ I also practiced validating user input. The program displays warnings for invali
 If I had more time, I would add Previous Week and Next Week buttons, allowing users to navigate between weeks instead of viewing only the current week.
 
 Overall, this project improved my understanding of Java and how to combine classes, lists, and graphical components to build a working application.
+
+### Design choices
+
+I chose to divide the program into several classes to make the code easier to understand, maintain and develop. I used inheritance to represent different types of activities, such as training and meetings.
+
+I also separated the graphical user interface from the management of activities to give each class a clear responsibility.
+
+### Future development – Monthly view
+
+The program could be extended to display an entire month instead of just one week. This would require handling different numbers of days in each month and arranging the dates in a calendar grid.
+
+Navigation buttons could also be added to allow users to switch between previous and upcoming months.
