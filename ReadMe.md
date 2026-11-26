@@ -8,7 +8,7 @@ This project was developed using **Microsoft OpenJDK 25.0.4**.
 1. Open the project in IntelliJ IDEA.
 2. Make sure Microsoft OpenJDK 25.0.4 is selected as the Project SDK.
 3. Open `Main.java`.
-4. Click **Run** to start the calendar application.
+4. Click *Run* to start the calendar application.
 ## Project Classes
 
 The project consists of six classes:
